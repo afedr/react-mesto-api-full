@@ -133,7 +133,9 @@ function App() {
       checkToken(jwt)
         .then((res) => {
           setLoggedIn(true);
-          setEmail(res.data.email);
+          // todo make this a public method
+          api._headers.authorization = 'Bearer ' + jwt;
+          setEmail(res.email);
           history.push("/");
         })
         .catch((err) => {
