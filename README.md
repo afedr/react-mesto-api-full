@@ -1,4 +1,19 @@
-# react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`. 
+## A single-page application that simulates a user's page with a gallery.
+
+Frontend and backend, full MERN functionality.
+
+### 🔹 App functions: 🔹
+
+* registration
+* logging in
+* editing a profile info and avatar
+* adding images to the gallery via url-links
+* deleting images
+* putting likes.
+
   
-Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
+### :wrench: Links to test:
+
+* IP 51.250.92.146
+* Frontend https://domainname.students.nomoredomains.icu
+* Backend https://api.domainname.anfed.nomoredomains.icu
