@@ -14,6 +14,8 @@ Frontend and backend, full MERN functionality.
   
 ### :wrench: Links to test:
 
-* IP 51.250.92.146
+* IP - 51.250.92.146
 * Frontend https://domainname.students.nomoredomains.icu
 * Backend https://api.domainname.anfed.nomoredomains.icu
+
+* Link for repository - https://github.com/afedr/react-mesto-api-full
