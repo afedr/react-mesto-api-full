@@ -4,13 +4,12 @@ import React from 'react';
 function Card(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const card = props.card;
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
   const cardDeleteButtonClassName = (
     `elements__delete ${isOwn ? '' : 'popup_is_hidden'}`
-  ); 
-  const isLiked = card.likes.some(i => i._id === currentUser._id);
-  const cardLikeButtonClassName = `elements__like-button ${isLiked ? 'elements__like-button_active' : ''}`; 
-
+  );
+  const isLiked = card.likes.some(i => i === currentUser._id);
+  const cardLikeButtonClassName = `elements__like-button ${isLiked ? 'elements__like-button_active' : ''}`;
 
   function handleCardClick() {
     props.onClick(props.card);
@@ -23,7 +22,6 @@ function Card(props) {
   function handleDeleteClick() {
     props.onCardDelete(props.card);
   }
-
 
   return (
     <li className="elements__card">

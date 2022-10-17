@@ -80,6 +80,50 @@ class Api {
       headers: this._headers,
     }).then(this._checkResponse);
   }
+
+  saveToken(token) {
+    this._headers.authorization = 'Bearer ' + token;
+  }
+
+  login(email, password) {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: 'POST',
+      headers: {
+        Accept: "application/json",
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      })
+    })
+    .then(this._checkResponse)
+    .then((data) => {
+      if (data.token) {
+        this.saveToken(data.token);
+        localStorage.setItem("jwt", data.token);
+        return data;
+      }
+    })
+  };
+
+  checkToken (jwt) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization" : `Bearer ${jwt}`
+      },
+    })
+    .then((res) => {
+      if (res.ok) {
+        this.saveToken(jwt);
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+  };
+
 }
 
 export const api = new Api({
@@ -113,45 +157,3 @@ export const register = (email, password) => {
   })
 };
 
-
-export const login = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
-    method: 'POST',
-    headers: {
-      Accept: "application/json",
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      email: email,
-      password: password,
-    })
-  })
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
-  .then((data) => {
-    if (data.token) {
-      localStorage.setItem("jwt", data.token);
-      return data;
-    }
-  })
-};
-
-export const checkToken = (jwt) => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization" : `Bearer ${jwt}`
-    },
-  })
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
-};

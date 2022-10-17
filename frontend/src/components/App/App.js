@@ -119,7 +119,7 @@ function App() {
       api
         .getInitialCards()
         .then((intialCards) => {
-          setCards(intialCards);
+          setCards(intialCards.reverse());
         })
         .catch((err) => {
           console.log(err);
@@ -130,11 +130,9 @@ function App() {
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      checkToken(jwt)
+      api.checkToken(jwt)
         .then((res) => {
           setLoggedIn(true);
-          // todo make this a public method
-          api._headers.authorization = 'Bearer ' + jwt;
           setEmail(res.email);
           history.push("/");
         })
@@ -145,7 +143,7 @@ function App() {
   }, []);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
@@ -197,7 +195,7 @@ function App() {
   }
 
   function handleLogin(email, password) {
-    login(email, password)
+    api.login(email, password)
       .then((data) => {
         setLoggedIn(true);
         setEmail(email);
