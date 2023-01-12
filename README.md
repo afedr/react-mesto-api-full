@@ -1,6 +1,5 @@
 ## A single-page application that simulates a user's page with a gallery.
 
-Frontend and backend, full MERN functionality.
 
 ### 🔹 App functions: 🔹
 
@@ -11,6 +10,11 @@ Frontend and backend, full MERN functionality.
 * deleting images
 * putting likes.
 
+### 🔹 Backend 🔹
+Express.js, MongoDB(mongoose), Node.js
+
+### 🔹 Frontend 🔹
+Create React App
   
 ### :wrench: Links to test:
 
@@ -18,4 +22,3 @@ Frontend and backend, full MERN functionality.
 * Frontend https://domainname.students.nomoredomains.icu
 * Backend https://api.domainname.anfed.nomoredomains.icu
 
-* Link for repository - https://github.com/afedr/react-mesto-api-full
